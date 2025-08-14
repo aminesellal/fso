@@ -1,0 +1,12 @@
+
+1. L'utilisateur écrit une nouvelle note dans le champ de saisie et clique sur le bouton "Enregistrer".
+
+2. Le JavaScript de la page intercepte l'événement, empêche le rechargement de la page et envoie une requête HTTP POST vers /new_note_spa avec la note en format JSON.
+
+3. Le serveur reçoit la requête, enregistre la note et répond avec un code 201 pour indiquer que la ressource a été créée avec succès.
+
+4. Sans recharger la page, le JavaScript envoie une requête GET vers /data.json pour obtenir la liste mise à jour des notes.
+
+5. Le serveur répond avec les données JSON contenant toutes les notes, y compris la nouvelle.
+
+6. Le navigateur met à jour dynamiquement l'affichage pour inclure la nouvelle note.
