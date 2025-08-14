@@ -1,0 +1,14 @@
+1. L’utilisateur écrit une note et clique sur "Save".
+
+2. Le JavaScript de la SPA intercepte l’événement et empêche le rechargement de la page.
+
+3. Le navigateur envoie une requête HTTP POST vers /new_note_spa avec le contenu de la note au format JSON.
+
+4. Le serveur reçoit la requête, enregistre la note, puis répond avec un code 201 et le JSON de la note ajoutée.
+
+
+5. Le navigateur met à jour la liste des notes directement côté client, sans recharger la page.
+
+6. Aucune requête supplémentaire vers /spa ou /notes n’est effectuée.
+
+
