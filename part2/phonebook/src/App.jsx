@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import axios from 'axios'
 
 // Composant Filter
 const Filter = ({ filter, handleFilterChange }) => (
@@ -26,7 +27,7 @@ const PersonForm = ({ addPerson, newName, handleNameChange, newNumber, handleNum
 const Persons = ({ persons }) => (
   <ul>
     {persons.map(person => (
-      <li key={person.name}>
+      <li key={person.id}>
         {person.name} {person.number}
       </li>
     ))}
@@ -35,10 +36,19 @@ const Persons = ({ persons }) => (
 
 // Composant principal App
 const App = () => {
-  const [persons, setPersons] = useState([{ name: 'Arto Hellas', number: '040-123456' }])
+  const [persons, setPersons] = useState([])   // tableau vide au départ
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
   const [filter, setFilter] = useState('')
+
+  // Charger les données depuis le serveur au premier rendu
+  useEffect(() => {
+    axios
+      .get('http://localhost:3001/persons')
+      .then(response => {
+        setPersons(response.data)
+      })
+  }, [])
 
   // Ajouter une personne
   const addPerson = (event) => {
